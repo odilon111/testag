@@ -1,20 +1,22 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:18-jdk-oraclelinux8'
-
-        }
-    }
+    agent none
     stages {
-        stage('Build') {
-            steps {
-                echo 'mvn -B'
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3.8.6-eclipse-temurin-11' }
             }
-         stage('Test'){
-               steps{
-               echo 'mvn -test'}
-               }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:16.13.1-alpine' }
+            }
+            steps {
+                sh 'node --version'
+            }
         }
     }
 }
