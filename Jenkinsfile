@@ -1,17 +1,22 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent {
-        docker {
-            image 'openjdk:11'
-           
-        }
-    }
+    agent any
+
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B'
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
-}
 }
