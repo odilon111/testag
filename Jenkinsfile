@@ -1,22 +1,17 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent none
-    stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3.8.6-eclipse-temurin-11' }
-            }
-            steps {
-                sh 'mvn --version'
-            }
+    agent {
+        docker {
+            image 'maven:3.8.6-eclipse-temurin-11'
+            args '-v $HOME/.m2:/root/.m2'
         }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:16.13.1-alpine' }
-            }
+    }
+    stages {
+        stage('Build') {
             steps {
-                sh 'node --version'
+                sh 'mvn -B'
             }
         }
     }
+}
 }
