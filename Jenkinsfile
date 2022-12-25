@@ -9,11 +9,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B'
+                echo 'mvn -B'
             }
          stage('Test'){
                steps{
-               sh 'mvn -test'}
+               echo 'mvn -test'}
                }
         }
     }
