@@ -2,8 +2,8 @@ Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent {
         docker {
-            image 'maven:3.8.6-eclipse-temurin-11'
-            args '-v $HOME/.m2:/root/.m2'
+            image 'openjdk:11'
+           
         }
     }
     stages {
